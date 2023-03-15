@@ -1,0 +1,6 @@
+﻿  SDL2Proj.cpp
+  Generating code
+  Previous IPDB and IOBJ mismatch, fall back to full compilation.
+  All 173 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  Finished generating code
+  SDL2Proj.vcxproj -> E:\Users_From_C\LightError\folder8\MyProjects\Cpp\SDL2Proj\x64\Release\SDL2Proj.exe
