@@ -1,4 +1,3 @@
-# SDL2Proj
 # pong-sdl-impl
 ## To get the exe file, go to the release and install zip with bin files
 ### library used: SDL2 and several auxiliary libraries
