@@ -1,6 +1,18 @@
-﻿  SDL2Proj.cpp
+﻿  GameBackend.cpp
+E:\Users_From_C\LightError\folder8\MyProjects\Cpp\SDL2Proj\SDL2Proj\Moving_Ball.hpp(25,3): warning C4091: 'static ': ignored on left of 'Moving_Ball::sound_enum' when no variable is declared
+E:\Users_From_C\LightError\folder8\MyProjects\Cpp\SDL2Proj\SDL2Proj\GameBackend.cpp(64,12): warning C4101: 'e': unreferenced local variable
+E:\Users_From_C\LightError\folder8\MyProjects\Cpp\SDL2Proj\SDL2Proj\GameBackend.cpp(155,45): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+E:\Users_From_C\LightError\folder8\MyProjects\Cpp\SDL2Proj\SDL2Proj\GameBackend.cpp(156,44): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+E:\Users_From_C\LightError\folder8\MyProjects\Cpp\SDL2Proj\SDL2Proj\GameBackend.cpp(166,44): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+E:\Users_From_C\LightError\folder8\MyProjects\Cpp\SDL2Proj\SDL2Proj\GameBackend.cpp(167,44): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+D:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.34.31933\include\memory(3433,56): warning C4244: 'argument': conversion from '_Ty' to 'int', possible loss of data
+          with
+          [
+              _Ty=double
+          ]
+E:\Users_From_C\LightError\folder8\MyProjects\Cpp\SDL2Proj\SDL2Proj\GameBackend.cpp(55,13): message : see reference to function template instantiation 'std::unique_ptr<Moving_Ball,std::default_delete<Moving_Ball>> std::make_unique<Moving_Ball,int,int,int&,int&,double,0>(int &&,int &&,int &,int &,double &&)' being compiled
   Generating code
   Previous IPDB and IOBJ mismatch, fall back to full compilation.
-  All 173 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  All 238 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
   Finished generating code
   SDL2Proj.vcxproj -> E:\Users_From_C\LightError\folder8\MyProjects\Cpp\SDL2Proj\x64\Release\SDL2Proj.exe

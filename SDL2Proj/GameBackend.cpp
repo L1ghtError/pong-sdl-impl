@@ -26,30 +26,11 @@ GameBackend::GameBackend(int p_window_width, int p_window_height)
 	}
 
 	//Load sound effects
-	paddle_hit = Mix_LoadWAV("../Assets/paddle_hit.wav");
-	if (paddle_hit == NULL)
-	{
-		printf("Failed to load scratch sound effect! SDL_mixer Error: %s\n", Mix_GetError());
-	}
-	other_hit = Mix_LoadWAV("../Assets/paddle_hit_pitched.wav");
-	if (other_hit == NULL)
-	{
-		printf("Failed to load scratch sound effect! SDL_mixer Error: %s\n", Mix_GetError());
-	}
-	player_goal = Mix_LoadWAV("../Assets/good.wav");
-	if (other_hit == NULL)
-	{
-		printf("Failed to load scratch sound effect! SDL_mixer Error: %s\n", Mix_GetError());
-	}
-	enemy_goal = Mix_LoadWAV("../Assets/bad.wav");
-	if (other_hit == NULL)
-	{
-		printf("Failed to load scratch sound effect! SDL_mixer Error: %s\n", Mix_GetError());
-	}
+	// 
 	//initialise font lib
 	TTF_Init();
 	//selects the desired font
-	font = TTF_OpenFont("../Assets/Peepo.ttf", ((window_height + window_width) / 40));
+	font = TTF_OpenFont("../Assets/Koulen.ttf", ((window_height + window_width) / 40));
 	if (font == NULL) {
 		SDL_Log("TTF_OpenFont %s", TTF_GetError());
 	}
@@ -146,8 +127,6 @@ GameBackend::~GameBackend()
 {
 	TTF_CloseFont(font);
 	SDL_DestroyRenderer(renderer);
-	Mix_FreeChunk(paddle_hit);
-	Mix_FreeChunk(other_hit);
 	SDL_DestroyWindow(window);
 	SDL_Quit();
 }
@@ -178,7 +157,7 @@ void GameBackend::compute_ball_movement()
 		if (!(rand() % 5)) {
 			++game_ball->speed;
 		}
-		Mix_PlayChannel(-1, paddle_hit, 0);
+		game_ball->play_sound(Moving_Ball::sound_enum::paddle_hit);
 	}
 	if (SDL_HasIntersection(&game_ball->rect_body, &user_pedal->rect_body)) {
 		double relativeIntersectY = (user_pedal->rect_body.y + (user_pedal->rect_body.h / 2)) - ((game_ball->rect_body.y + (ball_size / 2)));
@@ -190,11 +169,11 @@ void GameBackend::compute_ball_movement()
 			++game_ball->speed;
 		}
 
-		Mix_PlayChannel(-1, paddle_hit, 0);
+		game_ball->play_sound(Moving_Ball::sound_enum::paddle_hit);
 	}
 	if (game_ball->rect_body.x + game_ball->rect_body.w > window_width)
 	{
-		Mix_PlayChannel(-1, player_goal, 0);
+		game_ball->play_sound(Moving_Ball::sound_enum::player_goal);
 		++user_score;
 		who_serves = 0;
 		if(user_score==10){
@@ -205,7 +184,7 @@ void GameBackend::compute_ball_movement()
 	}
 	if (game_ball->rect_body.x < 0)
 	{
-		Mix_PlayChannel(-1, enemy_goal, 0);
+		game_ball->play_sound(Moving_Ball::sound_enum::enemy_goal);
 		++enemy_score;
 		who_serves = 1;
 		if (enemy_score == 10) {
@@ -217,7 +196,7 @@ void GameBackend::compute_ball_movement()
 	}
 	if (game_ball->rect_body.y<0 || game_ball->rect_body.y + game_ball->rect_body.h>window_height)
 	{
-		Mix_PlayChannel(-1, other_hit, 0);
+		game_ball->play_sound(Moving_Ball::sound_enum::other_hit);
 		game_ball->y_velocity = -game_ball->y_velocity;
 	}
 	game_ball->rect_body.x += game_ball->x_velocity;
