@@ -1,5 +1,6 @@
 # pong-sdl-impl
 ## To get the exe file, go to the release and install zip with bin files
+## To build the project, replace the relevant libraries with valid ones (with .lib files)
 ### library used: SDL2 and several auxiliary libraries
 ## Вимоги
 1. Показати знання мови C++ (не С).
