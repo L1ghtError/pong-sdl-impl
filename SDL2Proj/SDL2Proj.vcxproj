@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -143,17 +143,22 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="GameBackend.cpp" />
+    <ClCompile Include="Game_Backend.cpp" />
+    <ClCompile Include="Game_Scoreboard.cpp" />
     <ClCompile Include="Moving_Ball.cpp" />
+    <ClCompile Include="Moving_Ball_Builder.cpp" />
     <ClCompile Include="Moving_Base.cpp" />
-    <ClCompile Include="Moving_Pedal.cpp" />
+    <ClCompile Include="Moving_Paddle.cpp" />
     <ClCompile Include="SDL2Proj.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="GameBackend.hpp" />
+    <ClInclude Include="Game_Backend.hpp" />
+    <ClInclude Include="Game_Scoreboard.hpp" />
+    <ClInclude Include="Game_Utils.hpp" />
     <ClInclude Include="Moving_Ball.hpp" />
+    <ClInclude Include="Moving_Ball_Builder.hpp" />
     <ClInclude Include="Moving_Base.hpp" />
-    <ClInclude Include="Moving_Pedal.hpp" />
+    <ClInclude Include="Moving_Paddle.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

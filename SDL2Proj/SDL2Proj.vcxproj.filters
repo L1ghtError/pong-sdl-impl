@@ -18,10 +18,10 @@
     <ClCompile Include="SDL2Proj.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="GameBackend.cpp">
+    <ClCompile Include="Game_Backend.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Moving_Pedal.cpp">
+    <ClCompile Include="Moving_Paddle.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Moving_Ball.cpp">
@@ -30,18 +30,33 @@
     <ClCompile Include="Moving_Base.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Game_Scoreboard.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Moving_Ball_Builder.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="GameBackend.hpp">
+    <ClInclude Include="Game_Backend.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Moving_Pedal.hpp">
+    <ClInclude Include="Moving_Paddle.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Moving_Ball.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Moving_Base.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Game_Scoreboard.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Game_Utils.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Moving_Ball_Builder.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
