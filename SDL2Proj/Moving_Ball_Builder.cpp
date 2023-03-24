@@ -5,7 +5,7 @@ Default_Game_Ball_Builder::Default_Game_Ball_Builder(int p_window_width, int p_w
 void Default_Game_Ball_Builder::create_ball() {
 	game_ball = std::make_unique<Moving_Ball>
 		((window_width / 2) + (ball_size / 2),
-			(window_height / 2) + (ball_size / 2), ball_size, ball_size, window_width * 0.015);
+			(window_height / 2) + (ball_size / 2), ball_size, ball_size, window_width * 0.7);
 }
 void Default_Game_Ball_Builder::create_ball_sound() {
 	game_ball->append_sound("../Assets/paddle_hit.wav");

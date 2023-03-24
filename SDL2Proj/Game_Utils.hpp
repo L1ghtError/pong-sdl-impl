@@ -6,6 +6,7 @@
 
 #include <memory>
 namespace Game_Utils {
+	constexpr double PI = 3.14159265358979323846;
 	namespace Game_Deleters {
 		struct SDL_Mix_Deleter {
 			void operator()(Mix_Chunk* chunk) const {
@@ -22,5 +23,8 @@ namespace Game_Utils {
 				SDL_DestroyTexture(_texture);
 			}
 		};
+	}
+	namespace math {
+		void normalize(float& p_first_operand, float& p_second_operand);
 	}
 }

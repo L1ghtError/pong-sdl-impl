@@ -1,0 +1,10 @@
+﻿  Game_Backend.cpp
+D:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.34.31933\include\memory(3433,56): warning C4244: 'argument': conversion from '_Ty' to 'float', possible loss of data
+          with
+          [
+              _Ty=int
+          ]
+E:\Users_From_C\LightError\folder8\MyProjects\Cpp\SDL2Proj\SDL2Proj\Game_Backend.cpp(20,13): message : see reference to function template instantiation 'std::unique_ptr<Moving_Paddle,std::default_delete<Moving_Paddle>> std::make_unique<Moving_Paddle,int,int,int,int,int,0>(int &&,int &&,int &&,int &&,int &&)' being compiled
+  SDL2Proj.cpp
+  Generating Code...
+  SDL2Proj.vcxproj -> E:\Users_From_C\LightError\folder8\MyProjects\Cpp\SDL2Proj\x64\Debug\SDL2Proj.exe

@@ -1,0 +1,41 @@
+﻿  GameBackend.cpp
+E:\Users_From_C\LightError\folder8\MyProjects\Cpp\SDL2Proj\SDL2Proj\GameBackend.cpp(50,12): warning C4101: 'e': unreferenced local variable
+E:\Users_From_C\LightError\folder8\MyProjects\Cpp\SDL2Proj\SDL2Proj\GameBackend.cpp(121,45): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+E:\Users_From_C\LightError\folder8\MyProjects\Cpp\SDL2Proj\SDL2Proj\GameBackend.cpp(122,44): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+E:\Users_From_C\LightError\folder8\MyProjects\Cpp\SDL2Proj\SDL2Proj\GameBackend.cpp(128,44): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+E:\Users_From_C\LightError\folder8\MyProjects\Cpp\SDL2Proj\SDL2Proj\GameBackend.cpp(129,44): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+  Moving_Ball.cpp
+  Moving_Base.cpp
+  Moving_Pedal.cpp
+  SDL2Proj.cpp
+  Generating Code...
+GameBackend.obj : error LNK2019: unresolved external symbol __imp___invalid_parameter referenced in function "void * __cdecl std::_Allocate_manually_vector_aligned<struct std::_Default_allocate_traits>(unsigned int)" (??$_Allocate_manually_vector_aligned@U_Default_allocate_traits@std@@@std@@YAPAXI@Z)
+GameBackend.obj : error LNK2019: unresolved external symbol __imp___CrtDbgReport referenced in function "void * __cdecl std::_Allocate_manually_vector_aligned<struct std::_Default_allocate_traits>(unsigned int)" (??$_Allocate_manually_vector_aligned@U_Default_allocate_traits@std@@@std@@YAPAXI@Z)
+GameBackend.obj : error LNK2019: unresolved external symbol _SDL_GetError referenced in function "public: __thiscall GameBackend::GameBackend(int,int)" (??0GameBackend@@QAE@HH@Z)
+GameBackend.obj : error LNK2019: unresolved external symbol _SDL_HasIntersection referenced in function "public: void __thiscall GameBackend::compute_ball_movement(void)" (?compute_ball_movement@GameBackend@@QAEXXZ)
+GameBackend.obj : error LNK2019: unresolved external symbol _SDL_VideoInit referenced in function "public: __thiscall GameBackend::GameBackend(int,int)" (??0GameBackend@@QAE@HH@Z)
+GameBackend.obj : error LNK2019: unresolved external symbol _SDL_GetDesktopDisplayMode referenced in function "public: __thiscall GameBackend::GameBackend(int,int)" (??0GameBackend@@QAE@HH@Z)
+GameBackend.obj : error LNK2019: unresolved external symbol _SDL_DestroyWindow referenced in function "public: __thiscall GameBackend::~GameBackend(void)" (??1GameBackend@@QAE@XZ)
+GameBackend.obj : error LNK2019: unresolved external symbol _SDL_GetKeyboardState referenced in function "public: void __thiscall GameBackend::handle_input(void)" (?handle_input@GameBackend@@QAEXXZ)
+GameBackend.obj : error LNK2019: unresolved external symbol _SDL_PollEvent referenced in function "public: void __thiscall GameBackend::handle_input(void)" (?handle_input@GameBackend@@QAEXXZ)
+GameBackend.obj : error LNK2019: unresolved external symbol _SDL_Log referenced in function "public: __thiscall GameBackend::GameBackend(int,int)" (??0GameBackend@@QAE@HH@Z)
+GameBackend.obj : error LNK2019: unresolved external symbol _SDL_CreateWindowAndRenderer referenced in function "public: __thiscall GameBackend::GameBackend(int,int)" (??0GameBackend@@QAE@HH@Z)
+GameBackend.obj : error LNK2019: unresolved external symbol _SDL_SetRenderDrawColor referenced in function "public: void __thiscall GameBackend::render_scene(void)" (?render_scene@GameBackend@@QAEXXZ)
+GameBackend.obj : error LNK2019: unresolved external symbol _SDL_RenderClear referenced in function "public: void __thiscall GameBackend::render_scene(void)" (?render_scene@GameBackend@@QAEXXZ)
+GameBackend.obj : error LNK2019: unresolved external symbol _SDL_RenderFillRect referenced in function "public: void __thiscall GameBackend::render_scene(void)" (?render_scene@GameBackend@@QAEXXZ)
+GameBackend.obj : error LNK2019: unresolved external symbol _SDL_RenderPresent referenced in function "public: void __thiscall GameBackend::render_scene(void)" (?render_scene@GameBackend@@QAEXXZ)
+GameBackend.obj : error LNK2019: unresolved external symbol _SDL_DestroyRenderer referenced in function "public: __thiscall GameBackend::~GameBackend(void)" (??1GameBackend@@QAE@XZ)
+GameBackend.obj : error LNK2019: unresolved external symbol _SDL_GetTicks referenced in function "public: void __thiscall GameBackend::game_loop(void)" (?game_loop@GameBackend@@QAEXXZ)
+GameBackend.obj : error LNK2019: unresolved external symbol _SDL_Delay referenced in function "public: void __thiscall GameBackend::render_scene(void)" (?render_scene@GameBackend@@QAEXXZ)
+GameBackend.obj : error LNK2019: unresolved external symbol _SDL_Init referenced in function "public: __thiscall GameBackend::GameBackend(int,int)" (??0GameBackend@@QAE@HH@Z)
+GameBackend.obj : error LNK2019: unresolved external symbol _SDL_Quit referenced in function "public: __thiscall GameBackend::~GameBackend(void)" (??1GameBackend@@QAE@XZ)
+GameBackend.obj : error LNK2019: unresolved external symbol _TTF_Init referenced in function "public: __thiscall GameBackend::GameBackend(int,int)" (??0GameBackend@@QAE@HH@Z)
+GameBackend.obj : error LNK2019: unresolved external symbol _TTF_OpenFont referenced in function "public: __thiscall GameBackend::GameBackend(int,int)" (??0GameBackend@@QAE@HH@Z)
+GameBackend.obj : error LNK2019: unresolved external symbol _TTF_CloseFont referenced in function "public: __thiscall GameBackend::~GameBackend(void)" (??1GameBackend@@QAE@XZ)
+MSVCRT.lib(exe_main.obj) : error LNK2019: unresolved external symbol _main referenced in function "int __cdecl __scrt_common_main_seh(void)" (?__scrt_common_main_seh@@YAHXZ)
+E:\Users_From_C\LightError\folder8\MyProjects\Cpp\SDL2Proj\Dependencies\SDL2-2.26.4\lib\x64\SDL2.lib : warning LNK4272: library machine type 'x64' conflicts with target machine type 'x86'
+E:\Users_From_C\LightError\folder8\MyProjects\Cpp\SDL2Proj\Dependencies\SDL2-2.26.4\lib\x64\SDL2main.lib : warning LNK4272: library machine type 'x64' conflicts with target machine type 'x86'
+E:\Users_From_C\LightError\folder8\MyProjects\Cpp\SDL2Proj\Dependencies\SDL2-2.26.4\lib\x64\SDL2test.lib : warning LNK4272: library machine type 'x64' conflicts with target machine type 'x86'
+E:\Users_From_C\LightError\folder8\MyProjects\Cpp\SDL2Proj\Dependencies\SDL2_image-2.6.3\lib\x64\SDL2_image.lib : warning LNK4272: library machine type 'x64' conflicts with target machine type 'x86'
+E:\Users_From_C\LightError\folder8\MyProjects\Cpp\SDL2Proj\Dependencies\SDL2_ttf-2.20.2\lib\x64\SDL2_ttf.lib : warning LNK4272: library machine type 'x64' conflicts with target machine type 'x86'
+E:\Users_From_C\LightError\folder8\MyProjects\Cpp\SDL2Proj\Debug\SDL2Proj.exe : fatal error LNK1120: 24 unresolved externals

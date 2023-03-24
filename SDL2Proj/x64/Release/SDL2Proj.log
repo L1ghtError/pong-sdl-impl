@@ -1,17 +1,6 @@
-﻿  Game_Backend.cpp
-E:\Users_From_C\LightError\folder8\MyProjects\Cpp\SDL2Proj\SDL2Proj\Game_Backend.cpp(57,12): warning C4101: 'e': unreferenced local variable
-E:\Users_From_C\LightError\folder8\MyProjects\Cpp\SDL2Proj\SDL2Proj\Game_Backend.cpp(149,45): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-E:\Users_From_C\LightError\folder8\MyProjects\Cpp\SDL2Proj\SDL2Proj\Game_Backend.cpp(150,44): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-E:\Users_From_C\LightError\folder8\MyProjects\Cpp\SDL2Proj\SDL2Proj\Game_Backend.cpp(160,44): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-E:\Users_From_C\LightError\folder8\MyProjects\Cpp\SDL2Proj\SDL2Proj\Game_Backend.cpp(161,44): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-D:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.34.31933\include\memory(3433,56): warning C4244: 'argument': conversion from '_Ty' to 'int', possible loss of data
-          with
-          [
-              _Ty=double
-          ]
-E:\Users_From_C\LightError\folder8\MyProjects\Cpp\SDL2Proj\SDL2Proj\Game_Backend.cpp(48,13): message : see reference to function template instantiation 'std::unique_ptr<Moving_Ball,std::default_delete<Moving_Ball>> std::make_unique<Moving_Ball,int,int,int&,int&,double,0>(int &&,int &&,int &,int &,double &&)' being compiled
+﻿  Moving_Base.cpp
   Generating code
-  4 of 285 functions ( 1.4%) were compiled, the rest were copied from previous compilation.
+  0 of 298 functions ( 0.0%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
     0 functions had inline decision re-evaluated but remain unchanged
   Finished generating code

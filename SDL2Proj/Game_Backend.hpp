@@ -4,13 +4,9 @@
 #include "Moving_Ball.hpp"
 #include "Moving_Paddle.hpp"
 #include "Game_Scoreboard.hpp"
-
 #include "Game_Utils.hpp"
-#include "Moving_Ball_Builder.hpp";
+#include "Moving_Ball_Builder.hpp"
 
-namespace {
-	constexpr double PI = 3.14159265358979323846;
-}
 class Game_Backend {
 
 	int window_width, window_height;
@@ -24,7 +20,10 @@ class Game_Backend {
 	SDL_Renderer* renderer;
 	SDL_Window* window;
 	SDL_Color color;
-	int frameCount, timerFPS, lastFrame, fps;
+
+	uint32_t last_tick_time = 0;
+	float delta_time = 0;
+	uint32_t offset_timer;
 	bool who_serves;
 	bool needs_delay;
 	//handles user input

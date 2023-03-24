@@ -145,6 +145,7 @@
   <ItemGroup>
     <ClCompile Include="Game_Backend.cpp" />
     <ClCompile Include="Game_Scoreboard.cpp" />
+    <ClCompile Include="Game_Utils.cpp" />
     <ClCompile Include="Moving_Ball.cpp" />
     <ClCompile Include="Moving_Ball_Builder.cpp" />
     <ClCompile Include="Moving_Base.cpp" />

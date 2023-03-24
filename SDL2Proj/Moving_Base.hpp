@@ -6,15 +6,20 @@ class Moving_Base {
 protected:
 	//variables that allow you to return to the standard position and speed
 	int default_x, default_y;
-	int default_speed;
-public:
-	//SDL body
+	float default_speed;
+	float interpolated_body_x_cord, interpolated_body_y_cord;
+	
 	SDL_Rect m_rect_body;
+public:
+	
+	
 	//body speed
-	int m_speed;
+	float m_speed;
 	//
 	void set_default_cords();
 	void set_default_speed();
+	//returns rect body depending on the interpolated values
+	SDL_Rect& get_rect_body();
 	//constructor
-	Moving_Base(int body_x_cord, int body_y_cord, int body_width, int body_height, int body_speed);
+	Moving_Base(int body_x_cord, int body_y_cord, int body_width, int body_height, float body_speed);
 };

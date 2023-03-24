@@ -24,7 +24,7 @@ int main(int argc, char** argv) {
 		std::cout << error.what();
 		return 1;
 	}
-	Game_Backend gameBackend(1920,1080);
+	Game_Backend gameBackend(1000,720);
 	gameBackend.game_loop();
 	return 0;
 }

@@ -17,11 +17,11 @@ Game_Backend::Game_Backend(int p_window_width, int p_window_height)
 
 	//initialise user paddle
 	user_paddle = std::make_unique<Moving_Paddle>
-		(32, ((window_height / 2) - (window_height / 4)), 12, window_height / 4, 10);
+		(32, ((window_height / 2) - (window_height / 4)), 12, window_height / 4, 500);
 
 	//initialise enemy paddle
 	enemy_paddle = std::make_unique<Moving_Paddle>
-		(window_width - 12 - 32, ((window_height / 2) - (window_height / 4)), 12, window_height / 4, 5);;
+		(window_width - 12 - 32, ((window_height / 2) - (window_height / 4)), 12, window_height / 4, 502);;
 
 	//initialise ball
 	Default_Game_Ball_Builder builder(window_width, window_height);
@@ -36,16 +36,13 @@ Game_Backend::Game_Backend(int p_window_width, int p_window_height)
 
 void Game_Backend::game_loop()
 {
-	int lastTime = 0;
-
+	offset_timer = SDL_GetTicks();
 	restart_session();
 	while (!quit) {
-		lastFrame = SDL_GetTicks();
-		if (lastFrame >= (lastTime + 1000)) {
-			lastTime = lastFrame;
-			fps = frameCount;
-			frameCount = 0;
-		}
+		uint32_t tick_time = SDL_GetTicks() - offset_timer;
+		delta_time = (static_cast<float>(tick_time) - static_cast<float>(last_tick_time)) / 1000.f;
+		last_tick_time = tick_time;
+
 		compute_ball_movement();
 		compute_enemy_movement();
 		compute_scoreboard_change();
@@ -65,14 +62,14 @@ void Game_Backend::handle_input()
 	if (keystates[SDL_SCANCODE_ESCAPE]) quit = true;
 
 
-	if ((keystates[SDL_SCANCODE_UP] || keystates[SDL_SCANCODE_W]) && user_paddle->m_rect_body.y > 1)
+	if ((keystates[SDL_SCANCODE_UP] || keystates[SDL_SCANCODE_W]) && user_paddle->get_rect_body().y > 1)
 	{
-		user_paddle->move_y(-1);
+		user_paddle->move_y(-1, delta_time);
 	}
 	if ((keystates[SDL_SCANCODE_DOWN] || keystates[SDL_SCANCODE_S])
-		&& user_paddle->m_rect_body.y + user_paddle->m_rect_body.h < window_height)
+		&& user_paddle->get_rect_body().y + user_paddle->get_rect_body().h < window_height)
 	{
-		user_paddle->move_y(1);
+		user_paddle->move_y(1, delta_time);
 	}
 	if (keystates[SDL_SCANCODE_R]) {
 		restart_session();
@@ -84,15 +81,10 @@ void Game_Backend::render_scene()
 	SDL_SetRenderDrawColor(renderer, 0x00, 0x00, 0x00, 255);
 	SDL_RenderClear(renderer);
 
-	frameCount++;
-	timerFPS = SDL_GetTicks() - lastFrame;
-	if (timerFPS < (1000 / 60)) {
-		SDL_Delay((1000 / 60) - timerFPS);
-	}
 	SDL_SetRenderDrawColor(renderer, color.r, color.g, color.b, 255);
-	SDL_RenderFillRect(renderer, &user_paddle->m_rect_body);
-	SDL_RenderFillRect(renderer, &enemy_paddle->m_rect_body);
-	SDL_RenderFillRect(renderer, &game_ball->m_rect_body);
+	SDL_RenderFillRect(renderer, &user_paddle->get_rect_body());
+	SDL_RenderFillRect(renderer, &enemy_paddle->get_rect_body());
+	SDL_RenderFillRect(renderer, &game_ball->get_rect_body());
 
 	SDL_RenderCopy(renderer, m_game_scoreboard.m_message_texture.get(), nullptr, &m_game_scoreboard.m_message_rect);
 	SDL_RenderPresent(renderer);
@@ -117,34 +109,21 @@ void Game_Backend::handle_delay()
 	if (needs_delay == 1) {
 		SDL_Delay(400);
 		needs_delay = 0;
+		offset_timer = SDL_GetTicks();
+		last_tick_time = 0;
 	}
 }
 void Game_Backend::compute_ball_movement()
 {
-	if (SDL_HasIntersection(&game_ball->m_rect_body, &enemy_paddle->m_rect_body)) {
-		double relativeIntersectY = (enemy_paddle->m_rect_body.y + (enemy_paddle->m_rect_body.h / 2)) - (game_ball->m_rect_body.y + (game_ball->m_rect_body.w / 2));
-		double norm = relativeIntersectY / (enemy_paddle->m_rect_body.h / 2);
-		double bounce = norm * (5 * PI / 12);
-		game_ball->m_ball_x_velocity = -game_ball->m_speed * cos(bounce);
-		game_ball->m_ball_y_velocity = game_ball->m_speed * -sin(bounce);
-		if (!(rand() % 5)) {
-			++game_ball->m_speed;
-		}
+	if (SDL_HasIntersection(&game_ball->get_rect_body(), &enemy_paddle->get_rect_body())) {
+		game_ball->handle_paddle_hit(enemy_paddle->get_rect_body());
 		game_ball->play_sound(static_cast<int>(sound_enum::paddle_hit));
 	}
-	if (SDL_HasIntersection(&game_ball->m_rect_body, &user_paddle->m_rect_body)) {
-		double relativeIntersectY = (user_paddle->m_rect_body.y + (user_paddle->m_rect_body.h / 2)) - ((game_ball->m_rect_body.y + (game_ball->m_rect_body.w / 2)));
-		double norm = relativeIntersectY / (user_paddle->m_rect_body.h / 2);
-		double bounce = norm * (5 * PI / 12);
-		game_ball->m_ball_x_velocity = game_ball->m_speed * cos(bounce);
-		game_ball->m_ball_y_velocity = game_ball->m_speed * -sin(bounce);
-		if (!(rand() % 5)) {
-			++game_ball->m_speed;
-		}
-
+	if (SDL_HasIntersection(&game_ball->get_rect_body(), &user_paddle->get_rect_body())) {
+		game_ball->handle_paddle_hit(user_paddle->get_rect_body());
 		game_ball->play_sound(static_cast<int>(sound_enum::paddle_hit));
 	}
-	if (game_ball->m_rect_body.x + game_ball->m_rect_body.w > window_width)
+	if (game_ball->get_rect_body().x + game_ball->get_rect_body().w > window_width)
 	{
 		game_ball->play_sound(static_cast<int>(sound_enum::player_goal));
 		++user_score;
@@ -156,7 +135,7 @@ void Game_Backend::compute_ball_movement()
 			prepeare_a_round();
 		}
 	}
-	if (game_ball->m_rect_body.x < 0)
+	if (game_ball->get_rect_body().x < 0)
 	{
 		game_ball->play_sound(static_cast<int>(sound_enum::enemy_goal));
 		++enemy_score;
@@ -168,22 +147,32 @@ void Game_Backend::compute_ball_movement()
 			prepeare_a_round();
 		}
 	}
-	if (game_ball->m_rect_body.y<0 || game_ball->m_rect_body.y + game_ball->m_rect_body.h>window_height)
+	if (game_ball->get_rect_body().y < 0)
 	{
 		game_ball->play_sound(static_cast<int>(sound_enum::other_hit));
-		game_ball->m_ball_y_velocity = -game_ball->m_ball_y_velocity;
+		//if less then invert
+		if (game_ball->m_ball_y_direction <= 0) {
+			game_ball->m_ball_y_direction = -game_ball->m_ball_y_direction;
+		}
 	}
-	game_ball->m_rect_body.x += game_ball->m_ball_x_velocity;
-	game_ball->m_rect_body.y += game_ball->m_ball_y_velocity;
+	if (game_ball->get_rect_body().y + game_ball->get_rect_body().h > window_height) {
+		game_ball->play_sound(static_cast<int>(sound_enum::other_hit));
+		//if over then invert
+		if (game_ball->m_ball_y_direction >= 0) {
+			game_ball->m_ball_y_direction = -game_ball->m_ball_y_direction;
+		}
+	}
+
+	game_ball->move_in_calculated_direction(delta_time);
 }
 void Game_Backend::compute_enemy_movement()
 {
-	if (game_ball->m_rect_body.y - game_ball->m_rect_body.h / 2 > enemy_paddle->m_rect_body.y + enemy_paddle->m_rect_body.h / 2
-		&& enemy_paddle->m_rect_body.y + enemy_paddle->m_rect_body.h < window_height)
-		enemy_paddle->move_y(1);
-	if (game_ball->m_rect_body.y - game_ball->m_rect_body.h / 2 < enemy_paddle->m_rect_body.y + enemy_paddle->m_rect_body.h / 2
-		&& enemy_paddle->m_rect_body.y > 1)
-		enemy_paddle->move_y(-1);
+	if (game_ball->get_rect_body().y - game_ball->get_rect_body().h / 2 > enemy_paddle->get_rect_body().y + enemy_paddle->get_rect_body().h / 2
+		&& enemy_paddle->get_rect_body().y + enemy_paddle->get_rect_body().h < window_height)
+		enemy_paddle->move_y(1, delta_time);
+	if (game_ball->get_rect_body().y - game_ball->get_rect_body().h / 2 < enemy_paddle->get_rect_body().y + enemy_paddle->get_rect_body().h / 2
+		&& enemy_paddle->get_rect_body().y > 1)
+		enemy_paddle->move_y(-1, delta_time);
 }
 void Game_Backend::prepeare_a_round()
 {
@@ -192,12 +181,11 @@ void Game_Backend::prepeare_a_round()
 	game_ball->set_default_cords();
 
 	game_ball->set_default_speed();
-	game_ball->m_ball_y_velocity = 0;
 	if (who_serves == 0) {
-		game_ball->m_ball_x_velocity = game_ball->m_speed;
+		game_ball->set_ball_direction(-1, 0);
 	}
 	if (who_serves == 1) {
-		game_ball->m_ball_x_velocity = -game_ball->m_speed;
+		game_ball->set_ball_direction(1, 0);
 	}
 }
 
